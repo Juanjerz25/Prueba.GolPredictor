@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace GolPredictor.Models.Model
+ namespace GolPredictor.WebApi.DataAccess.Entities
 {
     public partial class Pais
     {

@@ -1,7 +1,13 @@
+using AutoMapper;
+using GolPredictor.WebApi.DataAccess;
+using GolPredictor.WebApi.DataAccess.Repositories;
+using GolPredictor.WebApi.DataAccess.Repositories.Contracts;
+using GolPredictor.WebApi.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +34,27 @@ namespace GolPredictor.WebApi
         {
 
             services.AddControllers();
+
+            services.AddDbContext<GoalPredictorDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("PruebaDigitalware")));
+
+
+            #region DI DataAccess
+            services.AddTransient<IUserAdminRepository, UserAdminRepository>();
+            #endregion
+
+
+
+
+            // Configuracion Automapper
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutomapperConfig());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GolPredictor.WebApi", Version = "v1" });
@@ -43,6 +70,11 @@ namespace GolPredictor.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GolPredictor.WebApi v1"));
             }
+
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
