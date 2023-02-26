@@ -1,0 +1,1 @@
+﻿dotnet ef dbcontext scaffold  --no-pluralize "Server=JUANJE-PC;Database=GoalPredictorDb; User Id=sa; Password=juanje9225;" Microsoft.EntityFrameworkCore.SqlServer -o Model
