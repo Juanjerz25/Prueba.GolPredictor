@@ -11,24 +11,24 @@ namespace GolPredictor.WebApi.DTO.Response
         /// True: indica que la operación se ejecutó exitósamene.
         /// </summary>
         [DataMember]
-        public bool Exitoso { get; set; }
+        public bool Successful { get; set; }
 
         /// <summary>
         /// Código de fallo en caso de presentarse un error.
         /// </summary>
         [DataMember]
-        public string CodigoResultado { get; set; }
+        public string ErrorMessage { get; set; }
 
         /// <summary>
         /// Detalle del error que pueda presentarse.
         /// </summary>
         [DataMember]
-        public string Mensaje { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// Entidad compuesta con información 
         /// </summary>
         [DataMember]
-        public T ObjetoResultado { get; set; }
+        public T Result { get; set; }
     }
 }

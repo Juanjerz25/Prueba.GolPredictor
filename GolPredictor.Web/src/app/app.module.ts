@@ -8,6 +8,14 @@ import { SesionActivaComponent } from './sesion-activa/sesion-activa.component';
 import { HeaderPrincipalComponent } from './header-principal/header-principal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PartidosComponent } from './partidos/partidos.component';
+import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +23,21 @@ import { PartidosComponent } from './partidos/partidos.component';
     InicioComponent,
     SesionActivaComponent,
     HeaderPrincipalComponent,
-    PartidosComponent
+    PartidosComponent,
+    InicioSesionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

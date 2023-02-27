@@ -1,4 +1,6 @@
 using AutoMapper;
+using GolPredictor.WebApi.Application;
+using GolPredictor.WebApi.Application.Contracts;
 using GolPredictor.WebApi.DataAccess;
 using GolPredictor.WebApi.DataAccess.Repositories;
 using GolPredictor.WebApi.DataAccess.Repositories.Contracts;
@@ -41,6 +43,10 @@ namespace GolPredictor.WebApi
 
             #region DI DataAccess
             services.AddTransient<IUserAdminRepository, UserAdminRepository>();
+            #endregion
+
+            #region DI Application
+            services.AddTransient<IUserAdminApplication, UserAdminApplication>();
             #endregion
 
 

@@ -7,6 +7,6 @@ namespace GolPredictor.WebApi.DataAccess.Repositories.Contracts
 {
     interface IUserAdminRepository
     {
-        IEnumerable<UserAdmin> List(Expression<Func<UserAdmin, bool>> expression);
+        UserAdmin Find(Expression<Func<UserAdmin, bool>> expression);
     }
 }

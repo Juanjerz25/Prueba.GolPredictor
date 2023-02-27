@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Inicio Sesión</h1>
+<div mat-dialog-content>
+  <form
+    class="matero-form-horizontal"
+    autocomplete="off"
+    novalidate
+    [formGroup]="formInicioSesion"
+    (ngSubmit)="LogIn()"
+  >
+    <div fxLayout="row wrap" class="matero-row">
+      <div fxFlex="100" fxFlex.lt-sm="100" class="matero-col">
+        <mat-card class="mat-card-container">
+          <mat-card-subtitle>Ingrese los Campos Requeridos</mat-card-subtitle>
+          <div fxLayout="row wrap" fxLayoutGap="12px grid">
+            <div fxFlex="100" fxFlex.lt-sm="100">
+              <div fxFlex="10" fxFlex.lt-sm="10"></div>
+              <div fxFlex="50" fxFlex.lt-sm="50">
+                <mat-form-field>
+                  <mat-label>Nombre</mat-label>
+                  <input matInput formControlName="nombre" />
+                  <mat-error *ngIf="hasError('nombre', 'required')"
+                    >El Nombre es requerido</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <div fxFlex="10" fxFlex.lt-sm="10"></div>
+            </div>
+            <div fxFlex="100" fxFlex.lt-sm="100">
+              <div fxFlex="10" fxFlex.lt-sm="10"></div>
+              <div fxFlex="50" fxFlex.lt-sm="50">
+                <mat-form-field>
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput formControlName="contrasena" />
+                  <mat-error *ngIf="hasError('nombre', 'required')"
+                    >La Contraseña es requerida</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <div fxFlex="10" fxFlex.lt-sm="10"></div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button type="button" mat-button mat-dialog-close>Close</button>
+  <button mat-raised-button type="submit" color="primary" [disabled]="!formInicioSesion.valid">Ingresar</button>
+</div>

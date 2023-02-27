@@ -23,9 +23,12 @@ namespace GolPredictor.WebApi.DataAccess.Repositories
         #endregion
 
 
-        public IEnumerable<UserAdmin> List(Expression<Func<UserAdmin, bool>> expression)
+        #region Methods
+        public UserAdmin Find(Expression<Func<UserAdmin, bool>> expression)
         {
-            return _context.Set<UserAdmin>().Where(expression).AsNoTracking();
+            return _context.Set<UserAdmin>().AsNoTracking().FirstOrDefault(expression);
         }
+        #endregion
+
     }
 }
