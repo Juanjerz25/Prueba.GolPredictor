@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
+import { AgregarPartidoComponent } from './agregar-partido/agregar-partido.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatTableModule } from '@angular/material/table';
     SesionActivaComponent,
     HeaderPrincipalComponent,
     PartidosComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    AgregarPartidoComponent
   ],
   imports: [
     BrowserModule,

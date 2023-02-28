@@ -15,9 +15,9 @@ import { AlertService } from '../core/services/alert.service';
   styleUrls: ['./inicio-sesion.component.css'],
   providers: [HttpclientService]
 })
-export class InicioSesionComponent implements OnInit{
+export class InicioSesionComponent {
   formInicioSesion: FormGroup;
-  response: ResponseModel;
+  response: ResponseModel={};
 
   constructor(
     private dialogRef: MatDialogRef<InicioSesionComponent>,
@@ -28,16 +28,7 @@ export class InicioSesionComponent implements OnInit{
       nombre: new FormControl('', [Validators.required]),
       contrasena: new FormControl('', [Validators.required]),
     });
-
-    this.response = {} as ResponseModel;
   }
-  ngOnInit(): void {
-    this.formInicioSesion = new FormGroup({
-      nombre: new FormControl('', [Validators.required]),
-      contrasena: new FormControl('', [Validators.required]),
-    });
-  }
-
   async LogIn() {
     let loginUser = {
       nombre: this.formInicioSesion.value.nombre,

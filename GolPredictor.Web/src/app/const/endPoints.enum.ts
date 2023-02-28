@@ -1,3 +1,4 @@
 export enum EndPoints {
-  UserAdmin = '/UserAdmin'
+  UserAdmin = '/UserAdmin',
+  Partido = '/Partido'
 }

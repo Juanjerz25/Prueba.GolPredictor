@@ -18,18 +18,11 @@ namespace GolPredictor.WebApi.Controllers
 
         #region Builder
 
-
-        #endregion
-
-        #region Methods
-
         public UserAdminController(IUserAdminApplication userAdminApplication)
         {
             _userAdminApplication = userAdminApplication;
         }
-
         #endregion
-
 
         #region Methods
 

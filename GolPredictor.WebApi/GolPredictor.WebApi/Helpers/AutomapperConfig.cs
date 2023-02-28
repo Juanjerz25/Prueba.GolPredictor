@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GolPredictor.WebApi.DataAccess.Entities;
+using GolPredictor.WebApi.DTO.Pais;
 using GolPredictor.WebApi.DTO.Partido;
 
 namespace GolPredictor.WebApi.Helpers
@@ -9,7 +10,7 @@ namespace GolPredictor.WebApi.Helpers
 
         public AutomapperConfig()
         {
-            CreateMap<PartidoDto, PaisDto>()
+            CreateMap<PartidoDto, Partido>()
                             .AfterMap((input, output) =>
                             {
                                 output.FechaFin = input.FechaInicio.Value.AddMinutes(90);

@@ -67,7 +67,9 @@ namespace GolPredictor.Models.Model
 
             modelBuilder.Entity<Partido>(entity =>
             {
-                entity.Property(e => e.FechaProgramada).HasColumnType("datetime");
+                entity.Property(e => e.FechaFin).HasColumnType("datetime");
+
+                entity.Property(e => e.FechaInicio).HasColumnType("datetime");
 
                 entity.Property(e => e.ResultTeam1).HasDefaultValueSql("((0))");
 

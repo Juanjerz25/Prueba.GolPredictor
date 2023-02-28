@@ -37,7 +37,7 @@ namespace GolPredictor.WebApi.Application
             {
                 
 
-                var partido = mapper.Map<PartidoDto>(request);
+                var partido = mapper.Map<Partido>(request);
                 var validationMessage = ValidateData(partido);
                 if (!string.IsNullOrEmpty(validationMessage))
                 {
@@ -58,7 +58,6 @@ namespace GolPredictor.WebApi.Application
             }
             return response;
         }
-
         public ResponseQuery<List<PartidoDto>> GetPartidos()
         {
             ResponseQuery<List<PartidoDto>> response = new ResponseQuery<List<PartidoDto>>();
@@ -69,7 +68,7 @@ namespace GolPredictor.WebApi.Application
 
                 var partidoDtoList = mapper.Map<List<PartidoDto>>(partidoList);
                 
-                response.Result = partidoDtoList;
+                response.Result = partidoDtoList.OrderBy(x=> x.FechaInicio).ToList();
 
             }
             catch (Exception ex)
@@ -88,7 +87,7 @@ namespace GolPredictor.WebApi.Application
         /// </summary>
         /// <param name="partido"></param>
         /// <returns></returns>
-        private string ValidateData(PartidoDto partido)
+        private string ValidateData(Partido partido)
         {
             //fecha actual
             if (partido.FechaInicio.Value.Date != DateTime.Today.Date)            
@@ -100,7 +99,7 @@ namespace GolPredictor.WebApi.Application
 
 
             //cruce de fechas y juego de equipo
-            List<PaisDto> partidoList = _partidoRepository.List(x=> x.FechaInicio.Value.Date == DateTime.Today.Date).ToList();
+            List<Partido> partidoList = _partidoRepository.List(x=> x.FechaInicio.Value.Date == DateTime.Today.Date).ToList();
             foreach(var item in partidoList)
             {
                 if (item.Id == partido.Id && partido.Id != 0)

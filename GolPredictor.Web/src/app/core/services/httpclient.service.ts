@@ -20,6 +20,14 @@ export class HttpclientService {
     return response;
 }
 
+getAll(endpoint: string, typeEndPoint:string): Promise<object> {
+  let response = this._http.get(`${environment.backend}${endpoint}/${typeEndPoint}`)
+      .toPromise()
+      .then(result => result as ResponseModel)
+      .catch(this.handleError);
+  return response;
+}
+
 
 private handleError(error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {
