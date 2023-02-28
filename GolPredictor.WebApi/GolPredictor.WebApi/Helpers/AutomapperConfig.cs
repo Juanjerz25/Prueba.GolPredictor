@@ -1,17 +1,23 @@
 ﻿using AutoMapper;
+using GolPredictor.WebApi.DataAccess.Entities;
+using GolPredictor.WebApi.DTO.Partido;
 
 namespace GolPredictor.WebApi.Helpers
 {
     public class AutomapperConfig : Profile
     {
 
-            public AutomapperConfig()
-            {
-                //CreateMap<Producto, ProductoDto>().ReverseMap();
-                //CreateMap<Cliente, ClienteDto>().ReverseMap();
-                //CreateMap<Venta, VentaDto>().ReverseMap();
-                //CreateMap<VentaDetalle, VentaDetalleDto>().ReverseMap();
-            }
-        
+        public AutomapperConfig()
+        {
+            CreateMap<PartidoDto, PaisDto>()
+                            .AfterMap((input, output) =>
+                            {
+                                output.FechaFin = input.FechaInicio.Value.AddMinutes(90);
+                            })
+                            .ReverseMap();
+
+            CreateMap<PaisDto, Pais>().ReverseMap();
+        }
+
     }
 }

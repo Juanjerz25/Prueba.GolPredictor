@@ -29,24 +29,16 @@ namespace GolPredictor.WebApi.Application
             try
             {
                 var userAdmin = _userAdminRepository.Find(x => x.Nombre == request.Nombre && x.Contrasena == request.Contrasena);
-                response.Successful = true;
                 if (userAdmin == null)
                 {
-                    response.Message = "Usuario y/o contraseña invalido";
-                    response.Successful = false;
+                    response.ResponseMessage("Usuario y/o contraseña invalido", false);
                 }
-                
-                return response;
-
             }
             catch (Exception ex)
             {
-                response.Successful = false;
-                response.Message = "Hubo un error al ejecutar la instancia";
-                response.ErrorMessage = ex.Message;
-
-                return response;
+                response.ResponseMessage("Error en el sistema", false, ex.Message);               
             }
+            return response;
         }
         #endregion
     }

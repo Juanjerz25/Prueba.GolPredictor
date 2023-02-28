@@ -6,22 +6,23 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'golpredictor';
-  isLogIn:Boolean = false;
+  isLogIn: Boolean = false;
 
-  constructor (public dialog: MatDialog){}
+  constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    const dialogRef: MatDialogRef<InicioSesionComponent, string> = this.dialog.open(InicioSesionComponent,dialogConfig);
+    const dialogRef: MatDialogRef<InicioSesionComponent, string> =
+      this.dialog.open(InicioSesionComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       // validacion
-      this.isLogIn = true;
-
+      if (result != undefined && result != null) {
+        this.isLogIn = true;
+      }
     });
   }
-
 }

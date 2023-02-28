@@ -50,6 +50,7 @@ export class InicioSesionComponent implements OnInit{
       loginUser
     );
     if(this.response.successful){
+      this.alertService.success("Inicio sesión correctamente");
       this.dialogRef.close(this.response.successful);
     }
     else{

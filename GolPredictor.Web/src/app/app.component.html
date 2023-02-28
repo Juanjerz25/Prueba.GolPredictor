@@ -56,7 +56,7 @@
           >
             <span class="d-flex align-items-center">
               <i class="bi-chat-text-fill me-2"></i>
-              <span class="small">Send Feedback</span>
+              <span class="small">Ingreso administrador</span>
             </span>
           </button>
         </div>
@@ -90,7 +90,7 @@
       <app-sesion-activa></app-sesion-activa>
     </section>
 
-    <section id="partidos">
+    <section id="partidos"  *ngIf="isLogIn">
       <app-partidos></app-partidos>
     </section>
 

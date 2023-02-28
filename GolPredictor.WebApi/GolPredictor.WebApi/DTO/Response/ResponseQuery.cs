@@ -7,6 +7,10 @@ namespace GolPredictor.WebApi.DTO.Response
     [DataContract]
     public class ResponseQuery<T>
     {
+        public ResponseQuery()
+        {
+            this.Successful = true;
+        }
         /// <summary>
         /// True: indica que la operación se ejecutó exitósamene.
         /// </summary>
@@ -30,5 +34,12 @@ namespace GolPredictor.WebApi.DTO.Response
         /// </summary>
         [DataMember]
         public T Result { get; set; }
+
+        public void ResponseMessage(string message, bool successfull, string errorMessage = "")
+        {
+            this.Message = message;
+            this.Successful = successfull;
+            this.ErrorMessage = errorMessage;
+        }
     }
 }

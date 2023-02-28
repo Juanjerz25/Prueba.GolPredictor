@@ -9,15 +9,15 @@ using System.Collections.Generic;
     {
         public Pais()
         {
-            PartidoTeam1 = new HashSet<Partido>();
-            PartidoTeam2 = new HashSet<Partido>();
+            PartidoTeam1 = new HashSet<PaisDto>();
+            PartidoTeam2 = new HashSet<PaisDto>();
         }
 
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Abreviatura { get; set; }
-
-        public virtual ICollection<Partido> PartidoTeam1 { get; set; }
-        public virtual ICollection<Partido> PartidoTeam2 { get; set; }
+        
+        public virtual ICollection<PaisDto> PartidoTeam1 { get; set; }
+        public virtual ICollection<PaisDto> PartidoTeam2 { get; set; }
     }
 }
