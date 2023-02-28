@@ -5,6 +5,14 @@
       <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
         <div class="container-fluid px-5">
           <div class="row gx-5">
+            <button
+        mat-raised-button
+        type="button"
+        color="primary"
+        (click)="popUpPartido(null)"
+      >
+        Agregar Partido
+      </button>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
               <!-- Team1 Column -->
               <ng-container matColumnDef="Team1">
@@ -21,32 +29,32 @@
               <!-- FechaInicio Column -->
               <ng-container matColumnDef="FechaInicio">
                 <th mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
-                <td mat-cell *matCellDef="let element">{{element.FechaInicio}}</td>
+                <td mat-cell *matCellDef="let element">{{element.fechaInicio | date:'dd/MM/yyyy h:mm a'}}</td>
               </ng-container>
 
               <!-- ResultTeam1 Column -->
               <ng-container matColumnDef="ResultTeam1">
                 <th mat-header-cell *matHeaderCellDef>Marcador Equipo 1</th>
-                <td mat-cell *matCellDef="let element">{{element.ResultTeam1}}</td>
+                <td mat-cell *matCellDef="let element">{{element.resultTeam1}}</td>
               </ng-container>
 
                <!-- ResultTeam2 Column -->
                <ng-container matColumnDef="ResultTeam2">
                 <th mat-header-cell *matHeaderCellDef>Marcador Equipo 2</th>
-                <td mat-cell *matCellDef="let element">{{element.ResultTeam2}}</td>
+                <td mat-cell *matCellDef="let element">{{element.resultTeam1}}</td>
               </ng-container>
 
               <!-- Status Column -->
               <ng-container matColumnDef="Status">
                 <th mat-header-cell *matHeaderCellDef>Estado</th>
-                <td mat-cell *matCellDef="let element">{{element.status}}</td>
+                <td mat-cell *matCellDef="let element">{{(element.status? 'Activo':'Inactivo')}}</td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="partidoColumns"></tr>
+              <!-- [class.demo-row-is-clicked]="clickedRows.has(row)" -->
               <tr
                   mat-row
                   (click)="clickedRows.add(row)"
-                  [class.demo-row-is-clicked]="clickedRows.has(row)"
                   *matRowDef="let row; columns: partidoColumns;"
               ></tr>
             </table>

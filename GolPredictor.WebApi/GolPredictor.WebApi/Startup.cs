@@ -44,11 +44,13 @@ namespace GolPredictor.WebApi
             #region DI DataAccess
             services.AddTransient<IUserAdminRepository, UserAdminRepository>();
             services.AddTransient<IPartidoRepository, PartidoRepository>();
+            services.AddTransient<IPaisRepository, PaisRepository>();
             #endregion
 
             #region DI Application
             services.AddTransient<IUserAdminApplication, UserAdminApplication>();
             services.AddTransient<IPartidoApplication, PartidoApplication>();
+            services.AddTransient<IPaisApplication, PaisApplication>();
             #endregion
 
 

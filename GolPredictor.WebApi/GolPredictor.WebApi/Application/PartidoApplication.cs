@@ -35,8 +35,6 @@ namespace GolPredictor.WebApi.Application
             ResponseQuery<bool> response = new ResponseQuery<bool>();
             try
             {
-                
-
                 var partido = mapper.Map<Partido>(request);
                 var validationMessage = ValidateData(partido);
                 if (!string.IsNullOrEmpty(validationMessage))

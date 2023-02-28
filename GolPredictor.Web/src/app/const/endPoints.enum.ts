@@ -1,4 +1,5 @@
 export enum EndPoints {
   UserAdmin = '/UserAdmin',
-  Partido = '/Partido'
+  Partido = '/Partido',
+  Pais = '/Pais'
 }

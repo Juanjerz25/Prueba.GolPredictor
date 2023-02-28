@@ -6,8 +6,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpclientService } from 'src/app/core/services/httpclient.service';
 import { RequestLoginDto } from '../core/models/request-log-in';
-import { ResponseModel } from '../core/models/response-model';
 import { AlertService } from '../core/services/alert.service';
+import { ResponseModel } from '../core/models/response-model';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -17,7 +17,7 @@ import { AlertService } from '../core/services/alert.service';
 })
 export class InicioSesionComponent {
   formInicioSesion: FormGroup;
-  response: ResponseModel={};
+
 
   constructor(
     private dialogRef: MatDialogRef<InicioSesionComponent>,
@@ -35,17 +35,18 @@ export class InicioSesionComponent {
       contrasena: this.formInicioSesion.value.contrasena,
     } as RequestLoginDto;
 
-    this.response = await this.service.Post(
+    let response = await this.service.Post(
       EndPoints.UserAdmin,
       TypeEndPoints.LogIn,
       loginUser
-    );
-    if(this.response.successful){
+    ) as ResponseModel;
+    console.log(response);
+    if(response.successful){
       this.alertService.success("Inicio sesión correctamente");
-      this.dialogRef.close(this.response.successful);
+      this.dialogRef.close(response.successful);
     }
     else{
-      this.alertService.error(this.response.message);
+      this.alertService.error(response.message);
     }
 
 
