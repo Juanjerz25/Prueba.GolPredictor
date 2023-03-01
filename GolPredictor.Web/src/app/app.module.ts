@@ -29,6 +29,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule  } from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AgregarSesionComponent } from './agregar-sesion/agregar-sesion/agregar-sesion.component';
 
 
 
@@ -40,7 +41,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HeaderPrincipalComponent,
     PartidosComponent,
     InicioSesionComponent,
-    AgregarPartidoComponent
+    AgregarPartidoComponent,
+    AgregarSesionComponent
   ],
   imports: [
     BrowserModule,

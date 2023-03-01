@@ -1,5 +1,17 @@
-<h1 mat-dialog-title>Inicio Sesión</h1>
-<div mat-dialog-content>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(61, 50, 238);
+  "
+>
+  <h1 mat-dialog-title style="color: white !important">Inicio Sesión</h1>
+</div>
+<div
+  mat-dialog-content
+  style="display: flex; justify-content: center; align-items: center"
+>
   <form
     class="matero-form-horizontal"
     autocomplete="off"
@@ -9,43 +21,51 @@
   >
     <div fxLayout="row wrap" class="matero-row">
       <div fxFlex="100" fxFlex.lt-sm="100" class="matero-col">
-        <mat-card class="mat-card-container card-width">
-          <mat-card-subtitle>Ingrese los Campos Requeridos</mat-card-subtitle>
-          <div fxLayout="row wrap" fxLayoutGap="400px grid">
-            <div fxFlex="100" fxFlex.lt-sm="100">
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="50" fxFlex.lt-sm="50">
-                <mat-form-field>
-                  <mat-label>Nombre</mat-label>
-                  <input matInput formControlName="nombre" />
-                  <mat-error *ngIf="hasError('nombre', 'required')"
-                    >El Nombre es requerido</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
+        <mat-card-subtitle>Ingrese los Campos Requeridos</mat-card-subtitle>
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="400px grid"
+          style="margin-top: 10px"
+        >
+          <div fxFlex="100" fxFlex.lt-sm="100">
+            <div fxFlex="25" fxFlex.lt-sm="25"></div>
+            <div fxFlex="50" fxFlex.lt-sm="50">
+              <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" />
+                <mat-error *ngIf="hasError('nombre', 'required')"
+                  >El Nombre es requerido</mat-error
+                >
+              </mat-form-field>
             </div>
-            <div fxFlex="100" fxFlex.lt-sm="100">
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="50" fxFlex.lt-sm="50">
-                <mat-form-field>
-                  <mat-label>Contraseña</mat-label>
-                  <input matInput formControlName="contrasena" />
-                  <mat-error *ngIf="hasError('nombre', 'required')"
-                    >La Contraseña es requerida</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-            </div>
+            <div fxFlex="25" fxFlex.lt-sm="25"></div>
           </div>
-        </mat-card>
+          <div fxFlex="100" fxFlex.lt-sm="100">
+            <div fxFlex="25" fxFlex.lt-sm="25"></div>
+            <div fxFlex="50" fxFlex.lt-sm="50">
+              <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="contrasena" />
+                <mat-error *ngIf="hasError('nombre', 'required')"
+                  >La Contraseña es requerida</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" fxFlex.lt-sm="25"></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions style="margin-left: 20px">
       <button type="button" mat-button mat-dialog-close>Close</button>
-      <button mat-raised-button type="submit" color="primary" [disabled]="!formInicioSesion.valid">Ingresar</button>
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="!formInicioSesion.valid"
+      >
+        Ingresar
+      </button>
     </div>
   </form>
 </div>
-

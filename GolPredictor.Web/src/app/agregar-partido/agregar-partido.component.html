@@ -1,108 +1,121 @@
-<h1 mat-dialog-title>Inicio Sesión</h1>
-<div mat-dialog-content>
-  <form
-    class="matero-form-horizontal"
-    autocomplete="off"
-    novalidate
-    [formGroup]="formPartido"
-    (ngSubmit)="submit()"
-  >
-    <div fxLayout="row wrap" class="matero-row">
-      <div fxFlex="100" fxFlex.lt-sm="100" class="matero-col">
-        <mat-card class="mat-card-container card-width">
-          <mat-card-subtitle>Ingrese los Campos Requeridos</mat-card-subtitle>
-          <div fxLayout="row wrap" fxLayoutGap="400px grid">
-            <div fxFlex="100" fxFlex.lt-sm="100">
-              <div fxFlex="25" fxFlex.lt-sm="25">
-                <mat-form-field>
-                  <mat-label>Equipo 1</mat-label>
-                  <mat-select formControlName="team1Id">
-                    <mat-option *ngFor="let pais of paisList" [value]="pais.id">
-                      {{ pais.nombre }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="hasError('team1Id', 'required')"
-                    >El Equipo 1 es requerido</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="25" fxFlex.lt-sm="25">
-                <mat-form-field>
-                  <mat-label>Equipo 2</mat-label>
-                  <mat-select formControlName="team2Id">
-                    <mat-option *ngFor="let pais of paisList" [value]="pais.id">
-                      {{ pais.nombre }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="hasError('team2Id', 'required')"
-                    >El Equipo 2 es requerido</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-            </div>
-            <div fxFlex="100" fxFlex.lt-sm="100">
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="25" fxFlex.lt-sm="25">
-                <mat-form-field>
-                  <mat-label>Marcador Equipo 1</mat-label>
-                  <input type="number" matInput formControlName="resultTeam1" />
-                  <mat-error *ngIf="hasError('resultTeam1', 'required')"
-                    >El marcador del equipo 1 es requerido</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="25" fxFlex.lt-sm="25">
-                <mat-form-field>
-                  <mat-label>Marcador Equipo 2</mat-label>
-                  <input matInput formControlName="resultTeam2" />
-                  <mat-error *ngIf="hasError('resultTeam2', 'required')"
-                    >El marcador del equipo 2 es requerido</mat-error
-                  >
-                </mat-form-field>
-              </div>
-            </div>
-            <div fxFlex="100" fxFlex.lt-sm="100">
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="25" fxFlex.lt-sm="25">
-                <mat-form-field>
-                  <mat-label>Fecha inicio</mat-label>
-                  <input
-                    matInput
-                    [ngxMatDatetimePicker]="picker"
-                    formControlName="fechaInicio"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="$any(picker)"
-                  ></mat-datepicker-toggle>
-                  <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
-                  <mat-error *ngIf="hasError('fechaInicio', 'required')"
-                    >La Fecha de Inicio es requerida</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div fxFlex="25" fxFlex.lt-sm="25"></div>
-              <div fxFlex="25" fxFlex.lt-sm="25">
-                <p><mat-checkbox formControlName="status">Habilitado</mat-checkbox></p>
-              </div>
-            </div>
-          </div>
-        </mat-card>
+<form
+  class="matero-form-horizontal"
+  autocomplete="off"
+  novalidate
+  [formGroup]="formPartido"
+  (ngSubmit)="submit()"
+>
+  <div class="modal-content border-radius-overflow">
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(61, 50, 238);
+      "
+    >
+      <h1 mat-dialog-title style="color: white !important">
+        Registro de Partido
+      </h1>
+    </div>
+
+    <div class="container">
+      <div
+        class="row card-body justify-content-lg-center"
+        style="margin-left: 5%"
+      >
+        <h5>Ingrese los Campos Requeridos</h5>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Equipo 1</mat-label>
+            <mat-select formControlName="team1Id">
+              <mat-option *ngFor="let pais of paisList" [value]="pais.id">
+                {{ pais.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('team1Id', 'required')"
+              >El Equipo 1 es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Equipo 2</mat-label>
+            <mat-select formControlName="team2Id">
+              <mat-option *ngFor="let pais of paisList" [value]="pais.id">
+                {{ pais.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('team2Id', 'required')"
+              >El Equipo 2 es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Marcador Equipo 1</mat-label>
+            <input type="number" matInput formControlName="resultTeam1" />
+            <mat-error *ngIf="hasError('resultTeam1', 'required')"
+              >El marcador del equipo 1 es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Marcador Equipo 2</mat-label>
+            <input matInput formControlName="resultTeam2" />
+            <mat-error *ngIf="hasError('resultTeam2', 'required')"
+              >El marcador del equipo 2 es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Fecha inicio</mat-label>
+            <input
+              matInput
+              [ngxMatDatetimePicker]="picker"
+              formControlName="fechaInicio"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="$any(picker)"
+            ></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+            <mat-error *ngIf="hasError('fechaInicio', 'required')"
+              >La Fecha de Inicio es requerida</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+          style="align-items: center"
+        >
+          <p>
+            <mat-checkbox formControlName="status">Habilitado</mat-checkbox>
+          </p>
+        </div>
       </div>
     </div>
-    <div mat-dialog-actions>
-      <button type="button" mat-button mat-dialog-close>Close</button>
-      <button
-        mat-raised-button
-        type="submit"
-        color="primary"
-        [disabled]="!formPartido.valid"
-      >
-        Ingresar
-      </button>
-    </div>
-  </form>
-</div>
+  </div>
+  <div
+    mat-dialog-actions
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <button type="button" mat-button mat-dialog-close>Close</button>
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="!formPartido.valid"
+    >
+      Ingresar
+    </button>
+  </div>
+</form>

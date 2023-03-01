@@ -2,6 +2,7 @@
 using GolPredictor.WebApi.DataAccess.Entities;
 using GolPredictor.WebApi.DTO.Pais;
 using GolPredictor.WebApi.DTO.Partido;
+using GolPredictor.WebApi.DTO.Sesion;
 
 namespace GolPredictor.WebApi.Helpers
 {
@@ -18,6 +19,8 @@ namespace GolPredictor.WebApi.Helpers
                             .ReverseMap();
 
             CreateMap<PaisDto, Pais>().ReverseMap();
+            CreateMap<SesionDto, Sesion>().ReverseMap();
+            CreateMap<SesionUsuarioDto, SesionUsuario>().ReverseMap();
         }
 
     }
