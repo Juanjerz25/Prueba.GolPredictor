@@ -35,6 +35,7 @@ namespace GolPredictor.WebApi.Application
             ResponseQuery<bool> response = new ResponseQuery<bool>();
             try
             {
+                request.FechaInicio = TimeZoneInfo.ConvertTimeFromUtc(request.FechaInicio.Value, TimeZoneInfo.Local);
                 var partido = mapper.Map<Partido>(request);
                 var validationMessage = ValidateData(partido);
                 if (!string.IsNullOrEmpty(validationMessage))
@@ -106,10 +107,10 @@ namespace GolPredictor.WebApi.Application
                 if(item.FechaInicio <= partido.FechaInicio && item.FechaFin >= partido.FechaInicio || item.FechaInicio <= partido.FechaFin && item.FechaFin >= partido.FechaFin)
                     return "El partido ingresado se cruza con otro ya registrado";
 
-                if (item.Team1Id == partido.Team1Id)
+                if (partido.Id == 0 && (item.Team1Id == partido.Team1Id || item.Team2Id == partido.Team1Id))
                     return $"{item.Team1.Nombre} ({item.Team1.Abreviatura}) ya jugó en la fecha seleccionada";
 
-                if (item.Team2Id == partido.Team2Id)
+                if (partido.Id == 0 && (item.Team2Id == partido.Team2Id || item.Team2Id == partido.Team2Id))
                     return $"{item.Team2.Nombre} ({item.Team2.Abreviatura}) ya jugó en la fecha seleccionada";
 
             }

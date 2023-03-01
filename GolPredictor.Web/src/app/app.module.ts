@@ -24,24 +24,13 @@ import {
   NgxMatDateFormats,
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
-  NgxMatTimepickerModule,
-  NGX_MAT_DATE_FORMATS
+  NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+import { CommonModule  } from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
-  parse: {
-    dateInput: "l, LTS"
-  },
-  display: {
-    dateInput: "l, LTS",
-    monthYearLabel: "MMM YYYY",
-    dateA11yLabel: "LL",
-    monthYearA11yLabel: "MMMM YYYY"
-  }
-};
+
 
 @NgModule({
   declarations: [
@@ -77,9 +66,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     MatCheckboxModule
 
   ],
-  providers: [
-    { provide: NGX_MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

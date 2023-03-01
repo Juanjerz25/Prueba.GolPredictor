@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,6 +28,8 @@ namespace GolPredictor.WebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            CultureInfo.CurrentCulture = CultureInfo.CreateSpecificCulture("es-ES");
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CreateSpecificCulture("es-ES");
         }
 
         public IConfiguration Configuration { get; }
