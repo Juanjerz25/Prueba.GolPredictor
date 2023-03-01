@@ -45,7 +45,7 @@
             <div fxFlex="50" fxFlex.lt-sm="50">
               <mat-form-field>
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="contrasena" />
+                <input type="password" matInput formControlName="contrasena" />
                 <mat-error *ngIf="hasError('nombre', 'required')"
                   >La Contraseña es requerida</mat-error
                 >

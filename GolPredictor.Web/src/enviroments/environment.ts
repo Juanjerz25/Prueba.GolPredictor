@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  backend: 'https://localhost:44379/api'
+  backend: 'http://localhost:52596/api',
+  ws:'ws://localhost:52596/api'
 };

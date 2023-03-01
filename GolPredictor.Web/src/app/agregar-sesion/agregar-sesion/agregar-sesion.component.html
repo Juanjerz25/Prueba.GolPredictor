@@ -1,1 +1,69 @@
-<p>agregar-sesion works!</p>
+<form
+  class="matero-form-horizontal"
+  autocomplete="off"
+  novalidate
+  [formGroup]="formSesion"
+  (ngSubmit)="submit()"
+>
+  <div class="modal-content border-radius-overflow">
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(61, 50, 238);
+      "
+    >
+      <h1 mat-dialog-title style="color: white !important">
+        Registro de Partido
+      </h1>
+    </div>
+
+    <div class="container">
+      <div
+        class="row card-body justify-content-lg-center"
+        style="margin-left: 5%"
+      >
+        <h5>Ingrese los Campos Requeridos</h5>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Partido</mat-label>
+            <mat-select formControlName="partidoId">
+              <mat-option *ngFor="let partido of partidos" [value]="partido.id">
+                {{ partido.team1.nombre }} vs {{ partido.team2.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('partidoId', 'required')"
+              >El partido es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="col col-lg-6">
+          <mat-form-field>
+            <mat-label>Nombre de la sesion</mat-label>
+            <input  matInput formControlName="nombre" />
+            <mat-error *ngIf="hasError('nombre', 'required')"
+              >El nombre de la sesion es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    mat-dialog-actions
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <button type="button" mat-button mat-dialog-close>Close</button>
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="!formSesion.valid"
+    >
+      Ingresar
+    </button>
+  </div>
+</form>

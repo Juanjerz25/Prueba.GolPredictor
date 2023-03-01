@@ -37,7 +37,7 @@ namespace GolPredictor.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddTransient<IWebsocketHandlerApplication, WebsocketHandlerApplication>();
             services.AddControllers();
 
             services.AddDbContext<GoalPredictorDbContext>(options =>
@@ -56,6 +56,7 @@ namespace GolPredictor.WebApi
             services.AddTransient<IPartidoApplication, PartidoApplication>();
             services.AddTransient<IPaisApplication, PaisApplication>();
             services.AddTransient<ISesionApplication, SesionApplication>();
+            
             #endregion
 
 
@@ -91,11 +92,11 @@ namespace GolPredictor.WebApi
             .AllowAnyMethod()
             .AllowAnyHeader());
 
-            app.UseHttpsRedirection();
-
+            //app.UseHttpsRedirection();
+            app.UseWebSockets();
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

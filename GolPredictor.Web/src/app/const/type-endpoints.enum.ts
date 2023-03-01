@@ -2,5 +2,8 @@ export enum TypeEndPoints {
   LogIn = "LogIn",
   ManagePartido = "ManagePartido",
   GetPartidos = "GetPartidos",
-  GetPaises = "GetPaises"
+  GetPaises = "GetPaises",
+  ManageSesion = "ManageSesion",
+  GetSesiones = "GetSesiones",
+
 }

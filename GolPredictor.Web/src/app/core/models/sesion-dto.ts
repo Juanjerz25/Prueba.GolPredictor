@@ -7,6 +7,6 @@ export interface SesionDto {
     entryCode: string;
     partidoId: number | null;
     status: boolean | null;
-    partido: PartidoDto;
-    sesionUsuario: SesionUsuarioDto[];
+    partido: PartidoDto| null;
+    sesionUsuario: SesionUsuarioDto[]| null;
 }

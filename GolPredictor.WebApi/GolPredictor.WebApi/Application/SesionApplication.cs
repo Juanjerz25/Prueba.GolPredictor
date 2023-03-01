@@ -31,26 +31,33 @@ namespace GolPredictor.WebApi.Application
 
         #region Methods
 
-        public ResponseQuery<bool> ManageSesion(SesionDto request)
+        public ResponseQuery<int> ManageSesion(SesionDto request)
         {
-            ResponseQuery<bool> response = new ResponseQuery<bool>();
+            ResponseQuery<int> response = new ResponseQuery<int>();
             try
-            {               
+            {
+                var sesionList = _sesionRepository.List(x => x.Status.HasValue && x.Status == true && x.Partido.FechaInicio.Value.Date == DateTime.Now.Date);
+
+                if (sesionList.Any(x => x.Nombre == request.Nombre))
+                {
+                    response.ResponseMessage("La sesión ya existe", false);
+                    return response;
+                }
                 var sesion = mapper.Map<Sesion>(request);
 
-                if(sesion.Id == 0)
+                if (sesion.Id == 0)
                 {
-                    sesion.EntryCode = Guid.NewGuid().ToString().Substring(0,5);
+                    sesion.EntryCode = Guid.NewGuid().ToString().Substring(0, 5);
                     _sesionRepository.Insert(sesion);
-                }                    
+                }
                 else
                     _sesionRepository.Update(sesion);
+                response.Result = sesion.Id;
 
             }
             catch (Exception ex)
             {
                 response.ResponseMessage("Error en el sistema", false, ex.Message);
-                
             }
             return response;
         }
@@ -59,12 +66,12 @@ namespace GolPredictor.WebApi.Application
             ResponseQuery<List<SesionDto>> response = new ResponseQuery<List<SesionDto>>();
             try
             {
-                var sesionList = _sesionRepository.List(x=> x.Status.HasValue && x.Status == true);
+                var sesionList = _sesionRepository.List(x => x.Status.HasValue && x.Status == true && x.Partido.FechaInicio.Value.Date == DateTime.Now.Date);
 
 
                 var sesionDtoList = mapper.Map<List<SesionDto>>(sesionList);
-                
-                response.Result = sesionDtoList.OrderBy(x=> x.Nombre).ToList();
+
+                response.Result = sesionDtoList.OrderBy(x => x.Nombre).ToList();
 
             }
             catch (Exception ex)

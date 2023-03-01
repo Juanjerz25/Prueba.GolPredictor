@@ -94,7 +94,6 @@ export class AgregarPartidoComponent implements OnInit {
   }
 
   async submit() {
-    console.log((this.formPartido.value.fechaInicio));
     let partido = {
       id: this.partidoInject !== null ? this.partidoInject.id : 0,
       team1Id: this.formPartido.value.team1Id,

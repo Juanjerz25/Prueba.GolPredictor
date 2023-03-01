@@ -11,7 +11,7 @@ namespace GolPredictor.WebApi.DTO.Sesion
         public string EntryCode { get; set; }
         public int? PartidoId { get; set; }
         public bool? Status { get; set; }
-        public virtual PartidoDto Partido { get; set; }
-        public virtual ICollection<SesionUsuarioDto> SesionUsuario { get; set; }
+        public PartidoDto Partido { get; set; }
+        public  ICollection<SesionUsuarioDto> SesionUsuario { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace GolPredictor.WebApi.Application.Contracts
     public interface ISesionApplication
     {
         ResponseQuery<List<SesionDto>> GetSesiones();
-        ResponseQuery<bool> ManageSesion(SesionDto request);
+        ResponseQuery<int> ManageSesion(SesionDto request);
     }
 }

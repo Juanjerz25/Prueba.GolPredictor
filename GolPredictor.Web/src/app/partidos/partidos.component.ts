@@ -9,12 +9,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { dialogConfig } from '../const/dialog-config';
 import { AgregarPartidoComponent } from '../agregar-partido/agregar-partido.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 @Component({
   selector: 'app-partidos',
   templateUrl: './partidos.component.html',
@@ -24,9 +18,6 @@ export interface PeriodicElement {
 export class PartidosComponent implements OnInit {
   partidoColumns: string[] = ['Team1', 'Team2', 'FechaInicio', 'ResultTeam1', 'ResultTeam2', 'Status'];
   dataSource: PartidoDto[] = [];
-  clickedRows = new Set<PeriodicElement>();
-
-  partidos: PartidoDto[] = [];
   response: ResponseModel = {};
   constructor(
     private service: HttpclientService,

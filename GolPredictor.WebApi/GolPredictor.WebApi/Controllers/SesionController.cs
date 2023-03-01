@@ -33,7 +33,7 @@ namespace GolPredictor.WebApi.Controllers
 
         [HttpPost]
         [Route(nameof(SesionController.ManageSesion))]
-        public async Task<ResponseQuery<bool>> ManageSesion(SesionDto request)
+        public async Task<ResponseQuery<int>> ManageSesion(SesionDto request)
         {
             return await Task.Run(() =>
             {
