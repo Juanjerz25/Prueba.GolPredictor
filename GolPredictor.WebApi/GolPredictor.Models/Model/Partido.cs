@@ -9,7 +9,7 @@ namespace GolPredictor.Models.Model
     {
         public Partido()
         {
-            Apuesta = new HashSet<Apuesta>();
+            Sesion = new HashSet<Sesion>();
         }
 
         public int Id { get; set; }
@@ -23,6 +23,6 @@ namespace GolPredictor.Models.Model
 
         public virtual Pais Team1 { get; set; }
         public virtual Pais Team2 { get; set; }
-        public virtual ICollection<Apuesta> Apuesta { get; set; }
+        public virtual ICollection<Sesion> Sesion { get; set; }
     }
 }

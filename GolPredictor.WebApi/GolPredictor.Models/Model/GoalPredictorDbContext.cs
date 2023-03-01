@@ -17,7 +17,6 @@ namespace GolPredictor.Models.Model
         {
         }
 
-        public virtual DbSet<Apuesta> Apuesta { get; set; }
         public virtual DbSet<Pais> Pais { get; set; }
         public virtual DbSet<Partido> Partido { get; set; }
         public virtual DbSet<Sesion> Sesion { get; set; }
@@ -36,23 +35,6 @@ namespace GolPredictor.Models.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
-
-            modelBuilder.Entity<Apuesta>(entity =>
-            {
-                entity.Property(e => e.MarcadorTeam1).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.MarcadorTeam2).HasDefaultValueSql("((0))");
-
-                entity.HasOne(d => d.IdPartidoNavigation)
-                    .WithMany(p => p.Apuesta)
-                    .HasForeignKey(d => d.IdPartido)
-                    .HasConstraintName("FK_Apuesta_Partido");
-
-                entity.HasOne(d => d.IdSesionUsuarioNavigation)
-                    .WithMany(p => p.Apuesta)
-                    .HasForeignKey(d => d.IdSesionUsuario)
-                    .HasConstraintName("FK_Apuesta_SesionUsuario");
-            });
 
             modelBuilder.Entity<Pais>(entity =>
             {
@@ -90,9 +72,18 @@ namespace GolPredictor.Models.Model
 
             modelBuilder.Entity<Sesion>(entity =>
             {
+                entity.Property(e => e.EntryCode)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Partido)
+                    .WithMany(p => p.Sesion)
+                    .HasForeignKey(d => d.PartidoId)
+                    .HasConstraintName("FK_Sesion_Partido");
             });
 
             modelBuilder.Entity<SesionUsuario>(entity =>

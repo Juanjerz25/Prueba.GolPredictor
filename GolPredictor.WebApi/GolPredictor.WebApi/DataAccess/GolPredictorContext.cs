@@ -14,7 +14,6 @@ namespace GolPredictor.WebApi.DataAccess
         {
         }
 
-        public virtual DbSet<Apuesta> Apuesta { get; set; }
         public virtual DbSet<Pais> Pais { get; set; }
         public virtual DbSet<Partido> Partido { get; set; }
         public virtual DbSet<Sesion> Sesion { get; set; }
@@ -25,31 +24,13 @@ namespace GolPredictor.WebApi.DataAccess
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=JUANJE-PC;Database=GoalPredictorDb; User Id=sa; Password=juanje9225;");
+                optionsBuilder.UseSqlServer("Server=*****;Database=*******; User Id=****; Password=*******;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
-
-            modelBuilder.Entity<Apuesta>(entity =>
-            {
-                entity.Property(e => e.MarcadorTeam1).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.MarcadorTeam2).HasDefaultValueSql("((0))");
-
-                entity.HasOne(d => d.IdPartidoNavigation)
-                    .WithMany(p => p.Apuesta)
-                    .HasForeignKey(d => d.IdPartido)
-                    .HasConstraintName("FK_Apuesta_Partido");
-
-                entity.HasOne(d => d.IdSesionUsuarioNavigation)
-                    .WithMany(p => p.Apuesta)
-                    .HasForeignKey(d => d.IdSesionUsuario)
-                    .HasConstraintName("FK_Apuesta_SesionUsuario");
-            });
 
             modelBuilder.Entity<Pais>(entity =>
             {
@@ -87,9 +68,18 @@ namespace GolPredictor.WebApi.DataAccess
 
             modelBuilder.Entity<Sesion>(entity =>
             {
+                entity.Property(e => e.EntryCode)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Partido)
+                    .WithMany(p => p.Sesion)
+                    .HasForeignKey(d => d.PartidoId)
+                    .HasConstraintName("FK_Sesion_Partido");
             });
 
             modelBuilder.Entity<SesionUsuario>(entity =>
